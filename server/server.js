@@ -14,11 +14,18 @@ mongoose.connect(config.DATABASE,{
 });
 
 
-const {User}= require('./models/user');
-const {Book}= require('./models/book');
+// const {User}= require('./models/user');
+// const {Book}= require('./models/book');
+
+const books = require('./routes/books')
 
 app.use(bodyParser.json())
 app.use(cookieParser());
+
+
+//USE ROUTES
+app.use('/api',books);
+
 
 const port = process.env.PORT || 3001; 
 app.listen(port, ()=>{
