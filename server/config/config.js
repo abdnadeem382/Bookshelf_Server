@@ -5,7 +5,8 @@ const config = {
     },
     default: {
         SECRET: 'SUPERPASSWORD123',
-        DATABASE: 'mongodb+srv://abdullah:abd123@cluster0.hvxys.mongodb.net/BookShelf'
+        DATABASE: 'mongodb+srv://abdullah:abd123@cluster0.hvxys.mongodb.net/BookShelf',
+        JWT_EXPIRE_TIME : "7d"
     }
 }
 

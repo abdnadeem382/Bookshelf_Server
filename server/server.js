@@ -18,6 +18,7 @@ mongoose.connect(config.DATABASE,{
 // const {Book}= require('./models/book');
 
 const books = require('./routes/books')
+const users = require('./routes/users')
 
 app.use(bodyParser.json())
 app.use(cookieParser());
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 //USE ROUTES
 app.use('/api',books);
+app.use('/api',users);
 
 
 const port = process.env.PORT || 3001; 

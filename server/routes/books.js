@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {Book}  = require('../models/book')
+const {Book}  = require('../models/book');
+const { User } = require('../models/user');
 
 
 
 router.route('/getbook').get((req,res)=>{
     let id = req.query.id;
-    const book = Book.findById(id,(err,doc)=>{
+    Book.findById(id,(err,doc)=>{
         if(err) return res.status(400).send(err);
         res.send(doc);
     })
@@ -52,6 +53,25 @@ router.route('/delete').delete((req,res)=>{
             success: true,
             doc
         })
+    })
+})
+
+router.route('/getreviewer').get((req,res)=>{
+    let id = req.query.id;
+    User.findById(id,(err,doc)=>{
+        if (err) return res.status(400).send(err);
+        res.json({
+            success: true,
+            name: doc.name,
+            lastname: doc.lastname
+        })
+    })
+})
+
+router.route('/user_reviews').get((req,res)=>{
+    Book.find({ownerId:req.query.user}).exec((err,docs)=>{
+        if (err) return res.status(400).send(err);
+        res.send(docs);
     })
 })
 
